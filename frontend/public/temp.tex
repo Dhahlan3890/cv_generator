@@ -1,350 +1,176 @@
-\documentclass[10pt, letterpaper]{article}
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{inter}
+\renewcommand*\familydefault{\sfdefault}
 
-% Packages:
-\usepackage[
-    ignoreheadfoot, % set margins without considering header and footer
-    top=2 cm, % seperation between body and page edge from the top
-    bottom=2 cm, % seperation between body and page edge from the bottom
-    left=2 cm, % seperation between body and page edge from the left
-    right=2 cm, % seperation between body and page edge from the right
-    footskip=1.0 cm, % seperation between body and footer
-    % showframe % for debugging 
-]{geometry} % for adjusting page geometry
-\usepackage[explicit]{titlesec} % for customizing section titles
-\usepackage{tabularx} % for making tables with fixed width columns
-\usepackage{array} % tabularx requires this
-\usepackage[dvipsnames]{xcolor} % for coloring text
-\definecolor{primaryColor}{RGB}{0, 79, 144} % define primary color
-\usepackage{enumitem} % for customizing lists
-\usepackage{fontawesome5} % for using icons
-\usepackage{amsmath} % for math
-\usepackage[
-    pdftitle={FATHIM A HAPSA's CV},
-    pdfauthor={FATHIM A HAPSA},
-    pdfcreator={LaTeX with RenderCV},
+\usepackage{geometry}
+\geometry{a4paper, top=1.8cm, bottom=1in, left=2.5cm, right=2.5cm}
+
+\setcounter{secnumdepth}{0} % remove section numbering
+\pdfgentounicode=1 % make ATS friendly
+
+\usepackage{enumitem}
+\setlist[itemize]{noitemsep, left=2em}
+\setlist[description]{itemsep=0pt}
+\setlist[enumerate]{align=left}
+\usepackage[dvipsnames]{xcolor}
+\colorlet{icnclr}{gray}
+\usepackage{titlesec}
+\titlespacing{\subsection}{0pt}{*0}{*0}
+\titlespacing{\subsubsection}{0pt}{*0}{*0}
+\titleformat{\section}{\color{Sepia}\large\fontseries{black}\selectfont\uppercase}{}{}{\ruleafter}[\global\RemVStrue]
+\titleformat{\subsection}{\fontseries{bold}\selectfont}{}{}{\rvs}
+\titleformat{\subsubsection}{\color{gray}\fontseries{bold}\selectfont}{}{}{}
+
+\usepackage{xhfill}
+\newcommand\ruleafter[1]{#1~\xrfill[.5ex]{1pt}[gray]} % add rule after title in .5 x-height
+
+\newif\ifRemVS % remove vspace between \section & \subsection
+\newcommand{\rvs}{
+    \ifRemVS
+        \vspace{-1.5ex}
+    \fi
+    \global\RemVSfalse
+}
+
+\usepackage{fontawesome5}
+\usepackage[bookmarks=false]{hyperref} % [imp!]
+\hypersetup{
     colorlinks=true,
-    urlcolor=primaryColor
-]{hyperref} % for links, metadata and bookmarks
-\usepackage[pscoord]{eso-pic} % for floating text on the page
-\usepackage{calc} % for calculating lengths
-\usepackage{bookmark} % for bookmarks
-\usepackage{lastpage} % for getting the total number of pages
-\usepackage{changepage} % for one column entries (adjustwidth environment)
-\usepackage{paracol} % for two and three column entries
-\usepackage{ifthen} % for conditional statements
-\usepackage{needspace} % for avoiding page brake right after the section title
-\usepackage{iftex} % check if engine is pdflatex, xetex or luatex
+    urlcolor=Sepia,
+    pdftitle={My Resume}
+}
 
-% Ensure that generate pdf is machine readable/ATS parsable:
-\ifPDFTeX
-    \input{glyphtounicode}
-    \pdfgentounicode=1
-    \usepackage[T1]{fontenc}
-    \usepackage[utf8]{inputenc}
-    \usepackage{lmodern}
-\fi
+\usepackage[page]{totalcount}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhf{}
 
-\usepackage[default, type1]{sourcesanspro} 
-
-% Some settings:
-\AtBeginEnvironment{adjustwidth}{\partopsep0pt} % remove space before adjustwidth environment
-\pagestyle{empty} % no header or footer
-\setcounter{secnumdepth}{0} % no section numbering
-\setlength{\parindent}{0pt} % no indentation
-\setlength{\topskip}{0pt} % no top skip
-\setlength{\columnsep}{0.15cm} % set column seperation
-\makeatletter
-\let\ps@customFooterStyle\ps@plain % Copy the plain style to customFooterStyle
-\patchcmd{\ps@customFooterStyle}{\thepage}{
-    \color{gray}\textit{\small FATHIM A HAPSA - Page \thepage{} of \pageref*{LastPage}}
-}{}{} % replace number by desired string
-\makeatother
-\pagestyle{customFooterStyle}
-
-\titleformat{\section}{
-    % avoid page braking right after the section title
-    \needspace{4\baselineskip}
-    % make the font size of the section title large and color it with the primary color
-    \Large\color{primaryColor}
-}{
-}{
-}{
-    % print bold title, give 0.15 cm space and draw a line of 0.8 pt thickness
-    % from the end of the title to the end of the body
-    \textbf{#1}\hspace{0.15cm}\titlerule[0.8pt]\hspace{-0.1cm}
-}[] % section title formatting
-
-\titlespacing{\section}{
-    % left space:
-    -1pt
-}{
-    % top space:
-    0.3 cm
-}{
-    % bottom space:
-    0.2 cm
-} % section title spacing
-
-% \renewcommand\labelitemi{$\vcenter{\hbox{\small$\bullet$}}$} % custom bullet points
-\newenvironment{highlights}{
-    \begin{itemize}[
-        topsep=0.10 cm,
-        parsep=0.10 cm,
-        partopsep=0pt,
-        itemsep=0pt,
-        leftmargin=0.4 cm + 10pt
-    ]
-}{
-    \end{itemize}
-} % new environment for highlights
-
-\newenvironment{highlightsforbulletentries}{
-    \begin{itemize}[
-        topsep=0.10 cm,
-        parsep=0.10 cm,
-        partopsep=0pt,
-        itemsep=0pt,
-        leftmargin=10pt
-    ]
-}{
-    \end{itemize}
-} % new environment for highlights for bullet entries
-
-
-\newenvironment{onecolentry}{
-    \begin{adjustwidth}{
-        0.2 cm + 0.00001 cm
-    }{
-        0.2 cm + 0.00001 cm
-    }
-}{
-    \end{adjustwidth}
-} % new environment for one column entries
-
-\newenvironment{twocolentry}[2][]{
-    \onecolentry
-    \def\secondColumn{#2}
-    \setcolumnwidth{\fill, 4.5 cm}
-    \begin{paracol}{2}
-    }{
-    \switchcolumn \raggedleft \secondColumn
-    \end{paracol}
-    \endonecolentry
-} % new environment for two column entries
-
-\newenvironment{threecolentry}[3][]{
-    \onecolentry
-    \def\thirdColumn{#3}
-    \setcolumnwidth{0 cm, \fill, 4.5 cm}
-    \begin{paracol}{3}
-    {\raggedright #2} \switchcolumn
-    }{
-    \switchcolumn \raggedleft \thirdColumn
-    \end{paracol}
-    \endonecolentry
-} % new environment for three column entries
-
-\newenvironment{header}{
-    \setlength{\topsep}{0pt}\par\kern\topsep\centering\color{primaryColor}\linespread{1.5}
-}{
-    \par\kern\topsep
-} % new environment for the header
-
-\newcommand{\placelastupdatedtext}{% \placetextbox{<horizontal pos>}{<vertical pos>}{<stuff>}
-  \AddToShipoutPictureFG*{% Add <stuff> to current page foreground
-    \put(
-        \LenToUnit{\paperwidth-2 cm-0.2 cm+0.05cm},
-        \LenToUnit{\paperheight-1.0 cm}
-    ){\vtop{{\null}\makebox[0pt][c]{
-        \small\color{gray}\textit{Last updated in September 2024}\hspace{\widthof{Last updated in September 2024}}
-    }}}%
-  }%
-}%
-
-% save the original href command in a new command:
-\let\hrefWithoutArrow\href
-
-% new command for external links:
-\renewcommand{\href}[2]{\hrefWithoutArrow{#1}{\ifthenelse{\equal{#2}{}}{ }{#2 }\raisebox{.15ex}{\footnotesize \faExternalLink*}}}
-
+\usepackage{amsmath}
+\usepackage{amsfonts}
 
 \begin{document}
-    \newcommand{\AND}{\unskip
-        \cleaders\copy\ANDbox\hskip\wd\ANDbox
-        \ignorespaces
-    }
-    \newsavebox\ANDbox
-    \sbox\ANDbox{}
 
-    \placelastupdatedtext
-    \begin{header}
-        \fontsize{30 pt}{30 pt}
-        \textbf{FATHIM A HAPSA}
+\begin{center}
+    {\fontsize{28}{28}\selectfont Ahamed Dhahlan} \\ \bigskip
 
-        \vspace{0.3 cm}
+    {\color{icnclr}\faPhone} (+94) 77 958 09 67 \quad
+    {\color{icnclr}\faEnvelope} \href{mailto:peahameddhahlan3890@gmail.com}{peahameddhahlan3890@gmail.com} \quad
+    {\color{icnclr}\faLinkedin} \href{https://www.linkedin.com/[YOUR_LINKEDIN_PROFILE_URL]}{LinkedIn} \quad
+    {\color{icnclr}\faGithub} \href{https://github.com/[YOUR_GITHUB_USERNAME]}{Github}
+\end{center}
 
-        \normalsize
-        \mbox{{\footnotesize\faMapMarker*}\hspace*{0.13cm}Nilaveli, Trincomalee, Sri Lanka}%
-        \kern 0.25 cm%
-        \AND%
-        \kern 0.25 cm%
-        \href{mailto:www.hafsafathi29@gmail.com}{{\footnotesize\faEnvelope[regular]}\hspace*{0.13cm}www.hafsafathi29@gmail.com}%
-        \kern 0.25 cm%
-        \AND%
-        \kern 0.25 cm%
-        \href{tel:+94 768866467}{{\footnotesize\faPhone*}\hspace*{0.13cm}+94 768866467}%
-        \kern 0.25 cm%
-        \AND%
-        \kern 0.25 cm%
-        \href{https://www.linkedin.com/in/fathima-hafsa-29b2852b4}{{\footnotesize\faLinkedinIn}\hspace*{0.13cm}fathima-hafsa-29b2852b4}%
-    \end{header}
+\section{Summary}
+Experienced data scientist and machine learning engineer with a strong focus on transformers and LangChain agentic models. Skilled in developing and deploying advanced natural language processing (NLP) solutions, leveraging frameworks like PyTorch, Hugging Face Transformers, and LangChain to create intelligent, context-aware systems. Proficient in Python, R, and SQL, with hands-on experience in building end-to-end machine learning pipelines, predictive modeling, and data-driven decision-making. Adept at delivering scalable solutions that drive innovation and enhance user engagement.
 
-    \vspace{0.3 cm - 0.3 cm}
-
-
-    \section{Summary}
-
-        \begin{onecolentry}
-            A highly motivated and proficient BA graduate with a diverse range of experience,
-            including legal administration, community development, and educational volunteering. 
-            Strong organizational and communication skills, coupled with a proven ability to manage
-            projects efficiently and effectively.  Proficient in Microsoft Office applications, data
-            analysis, and document creation. Eager to contribute to a dynamic and challenging work
-            environment.
-        \end{onecolentry}
-
-        \vspace{0.2 cm}
-
-
-
-    \section{Education}
-
-        \begin{threecolentry}{\textbf{}}{
-            2019 - 2024
-        }
-            \textbf{Bachelor of Arts (Arabic)\\South Eastern University of Sri Lanka}
-            \begin{highlights}
-                \item Relevant coursework: Arabic Literature, Islamic Studies, Translation 
-            \end{highlights}
-        \end{threecolentry}
-
-
-        \vspace{0.2 cm}
-
-        \begin{threecolentry}{\textbf{}}{
-            2020
-        }
-            \textbf{Counselling Course\\Amazon College, Olivil, Colombo}
-            \begin{highlights}
-            \end{highlights}
-        \end{threecolentry}
-
-
-
-    
 \section{Experience}
+\subsection{Software Engineer Intern \hfill Sep \textendash{} Present 2024}
+\subsubsection{Paralegal.lk, Colombo, Sri Lanka} 
+\begin{itemize}
+    \item Integrated payment solutions into the website using PayHere services and React, enhancing transaction capabilities.
+    \item Conducted network analysis of legal case citations, significantly improving the website’s search engine efficiency by 200\%.
+    \item Collaborated on diverse web development tasks, emphasizing front-end functionality and optimizing user experience.
+\end{itemize}
+\subsection{Electrical and Information Engineer Intern \hfill August \textendash{} January 2023\textendash{}2024}
+\subsubsection{Mahaweli Authority of Sri Lanka, Victoria, Sri Lanka}
+\begin{itemize}
+    \item Led the design and implementation of a cutting-edge real-time dam simulation system for the Victoria Dam Control Room and Observation Platform.
+    \item Implemented a Dam Gate opening prediction app.
+\end{itemize}
 
-\begin{twocolentry}{
-    2023 - Present
-}
-    \textbf{Secretary, Quazi Court}
-    \begin{highlights}
-        \item Managed legal documentation, scheduled court proceedings, and assisted in the administration of Sharia law cases.
-        \item Honed organizational skills and gained insights into the functioning of the legal system.
-        \item  [Add more details about your experience as a Secretary, e.g., specific tasks, skills used, achievements]
-    \end{highlights}
-\end{twocolentry}
+\section{Projects}
+\subsection{Singlish GPT: Language Model for Sinhala in English Letters}
+\begin{itemize}
+    \item Developed a GPT model for Singlish text processing and generation using mT5, achieving 92\% accuracy in text generation.
+    \item \textbf{Technology Used:} Python, Hugging Face Transformers, PyTorch, Aksharamukha, Google Cloud
+\end{itemize}
+\subsection{DeChatIn: AI-Powered Chatbot for Conversational and Voice Interactions}
+\begin{itemize}
+    \item Developed an AI-driven chatbot with voice conversation capabilities, enabling natural interactions and seamless speech mode switching.
+    \item Enhanced conversational dynamics with real-time speech synthesis, improving user engagement.
+    \item \textbf{Technology Used:} Python, Streamlit, Google Gemma, Hugging Face Transformers, Google Text-to-Speech (TTS), NLP, Generative AI
+\end{itemize}
+\subsection{CodeForgeAI: Code Generation from Webpage Screenshots}
+\begin{itemize}
+    \item Created a tool to generate code from webpage screenshots with real-time previews, enhancing coding efficiency.
+    \item \textbf{Technology Used:} Python, Django, React, Gemini, Generative AI
+\end{itemize}
+\subsection{EduZone: An Innovative E-learning Platform \textendash{} Group Project}
+\begin{itemize}
+    \item Developed a comprehensive e-learning platform with courses and projects, using React (frontend) and Django (backend).
+    \item Used Python and Django for server-side logic and database management.
+    \item \textbf{Technology Used:} React, Python, Django, JWT, Machine Learning
+\end{itemize}
+\subsection{Trading Helper Agent: A Conversational Assistant for Stock Analysis}
+\begin{itemize}
+    \item Built an intelligent conversational agent for stock analysis, integrating tools for fetching stock data, news, and calculating moving averages.
+    \item Used LangChain for seamless interaction with external tools and a custom Google Gemma language model.
+    \item Implemented dynamic query handling and real-time processing.
+    \item \textbf{Technology Used:} Python, Hugging Face Transformers, LangChain Agent, PyTorch, Streamlit, YFinance
+\end{itemize}
+\subsection{Third Eye Glove for the Visually Impaired}
+\begin{itemize}
+    \item Developed a wearable glove using computer vision and ultrasonic sensors to detect obstacles and provide real-time feedback.
+    \item Implemented advanced image processing techniques for object and terrain identification.
+    \item \textbf{Technology Used:} Raspberry Pi, ATmega328p, Computer Vision, Image Processing, Ultrasonic Sensors, Python, OpenCV
+\end{itemize}
 
-\vspace{0.2 cm}
+\section{Education}
+\subsection{Bachelor of Science in Engineering (Honors) \textendash{} Electrical and Information \hfill 2021 \textendash{} 2025}
+\subsubsection{University of Ruhuna, Galle, Sri Lanka}
+\subsection{GCE Advanced Level and GCE Ordinary Level \hfill 2017 \textendash{} 2019}
+\subsubsection{Zahira College, Kalmunai, Sri Lanka}
 
-\begin{twocolentry}{
-    2018 - 2019
-}
-    \textbf{Internship at the Department of Local Government}
-    \begin{highlights}
-        \item Contributed to community development, engaged with residents, and participated in policy development.
-        \item Gained firsthand experience in the crucial role of local government and the significance of community involvement.
-        \item Faced and learned to navigate challenges posed by budget constraints.
-        \item  [Add more details about your internship, e.g., projects you worked on, skills you developed, any accomplishments]
-    \end{highlights}
-\end{twocolentry}
+\section{Skills}
+\subsection{Programming Languages}
+\begin{itemize}
+    \item C, C++, Python, JavaScript
+\end{itemize}
+\subsection{Data Science/ML Libraries}
+\begin{itemize}
+    \item TensorFlow, PyTorch, scikit-learn, NumPy, Pandas
+\end{itemize}
+\subsection{Machine Learning Skills}
+\begin{itemize}
+    \item NLP, Computer Vision, Model Training, Hyperparameter Tuning
+\end{itemize}
+\subsection{Web Development}
+\begin{itemize}
+    \item HTML, CSS, JavaScript, React.js, Node.js, Django
+\end{itemize}
+\subsection{Databases}
+\begin{itemize}
+    \item MySQL, MongoDB
+\end{itemize}
+\subsection{Development Tools}
+\begin{itemize}
+    \item Git, VSCode, Jupyter Notebook
+\end{itemize}
+\subsection{Soft Skills}
+\begin{itemize}
+    \item Problem Solving, Self-Learning, Presentation, Adaptability, Critical Thinking
+\end{itemize}
 
-\vspace{0.2 cm}
+\section{Certificates}
+\begin{itemize}
+    \item Introduction to Web Development with HTML, CSS, JavaScript
+    \item Introduction to Cloud Computing
+    \item Introduction to Deep Learning \& Neural Networks with Keras
+    \item Machine Learning with Python
+    \item Python for Data Analysis: Pandas \& NumPy
+    \item edX Verified Certificate for Data Science: Machine Learning
+    \item SystemVerilog for ASIC/FPGA Design \& Simulation
+\end{itemize}
 
-\begin{twocolentry}{
-    2018
-}
-    \textbf{Volunteer Teacher at Kuchchaveli, Trincomalee}
-    \begin{highlights}
-        \item Provided education to underprivileged children, delivering engaging lessons and fostering a positive learning environment.
-        \item Utilized creative teaching methods to inspire and empower students.
-        \item [Add more details about your volunteer work, e.g., the age of the children, teaching methods used, any notable outcomes]
-    \end{highlights}
-\end{twocolentry}
+\section{Achievements}
+\begin{itemize}
+    \item Participant, Commercial Bank Hackathon, June 2024
+    \item 2nd Runners up, Haxtreme 2.0, IEEE Society, November 2023
+    \item Top 10\%, AWS Deep Racer, August 2023
+\end{itemize}
 
-% \vspace{0.2 cm}
+\section{References}
+References available upon request.
 
-
-
-
-    
-    \section{Technical Skills}
-
-        \begin{onecolentry}
-            \textbf{Software:} Microsoft Office Suite (Word, Excel, PowerPoint, etc.)
-        \end{onecolentry}
-
-        \vspace{0.2 cm}
-
-        \begin{onecolentry}
-            \textbf{Other Skills:} Data analysis, document creation, project management, reporting
-        \end{onecolentry}
-
-
-    
-    \section{Soft Skills}
-
-        \begin{onecolentry}
-            Communication, Organization, Critical thinking, Teamwork, Meeting deadlines, Information & communication technology
-        \end{onecolentry}
-
-
-    
-    \section{Languages}
-
-        \begin{onecolentry}
-            \textbf{English:} Professional
-            \textbf{Arabic:} Professional
-            \textbf{Tamil:} Native
-        \end{onecolentry}
-
-
-    
-    \section{References}
-
-        \begin{twocolentry}{
-        }
-            \textbf{Ash Sheikh M.M. Jameen (BA)}
-            \begin{highlights}
-                \item Judge, Eastern Province, Trincomalee
-                \item \href{tel:+94 71 83 46 200}{+94 71 83 46 200}
-            \end{highlights}
-        \end{twocolentry}
-
-
-        \vspace{0.2 cm}
-
-        \begin{twocolentry}{
-        }
-            \textbf{Gopalapuram Tamil Vidyalayam}
-            \begin{highlights}
-                \item Kuchchaveli, Trincomalee
-            \end{highlights}
-        \end{twocolentry}
-
-    % \section{Declaration}
-
-    %     \begin{onecolentry}
-    %         I hereby confirm and verify all the facts mentioned above and I hold the responsibility of their authenticity and correctness. 
-    %     \end{onecolentry}
 \end{document}

@@ -3,7 +3,9 @@ import os
 import PyPDF2
 import subprocess
 import shutil
+from dotenv import load_dotenv
 
+load_dotenv()
 API_KEY = os.getenv("API_KEY")
 
 genai.configure(api_key=API_KEY)
@@ -61,7 +63,7 @@ def advanced_chat(friend_cv, pdf_path ):
 
   return final_cv
 
-import os
+
 
 def latex_to_pdf(latex_code, output_path):
     # Create the directory if it doesn't exist
