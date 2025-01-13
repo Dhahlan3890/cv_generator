@@ -4,7 +4,7 @@ import PyPDF2
 import subprocess
 import shutil
 
-API_KEY="AIzaSyDDSwzN5o85ckkRVJXZEidq9zIPKIP8HtY"
+API_KEY = os.getenv("API_KEY")
 
 genai.configure(api_key=API_KEY)
 
