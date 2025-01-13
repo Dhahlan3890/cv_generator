@@ -41,7 +41,7 @@ const Uploader = () => {
       formData.append('user_cv', userCV);
   
       try {
-        const response = await axios.post('http://localhost:8000/api/generate-cv', formData, {
+        const response = await axios.post('https://cv-generator-om1i.onrender.com/api/generate-cv', formData, {
           responseType: 'blob',
         });
   

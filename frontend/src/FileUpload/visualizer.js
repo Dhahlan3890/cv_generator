@@ -30,7 +30,7 @@ const Visualizer = () => {
             const formData = new FormData();
             formData.append('tex_code', texContent);
 
-            const response = await axios.post('http://localhost:8000/api/tex-to-pdf-file', formData, {
+            const response = await axios.post('https://cv-generator-om1i.onrender.com/api/tex-to-pdf-file', formData, {
                 responseType: 'blob',
             });
 
