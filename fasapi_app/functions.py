@@ -5,6 +5,38 @@ import subprocess
 import shutil
 from dotenv import load_dotenv
 
+# from gradio_client import Client
+
+# client = Client("Dhahlan2000/dechat_space_zero")
+
+# def advanced_chat(friend_cv, pdf_path ):
+  
+#   details = extract_text_from_pdf(pdf_path)
+
+#   prompt = f"""
+#   - i will give you the latex code of my friends cv, my details till that dont answer anything wait. after i gave you both modify my friends cv with my details.
+#     - Friend CV:
+#     {friend_cv}
+#     - My details:
+#     {details}
+#     - Fix Misplaced alignment character error, Runaway argument error, Emergency stop error in your code and the corrected full code
+#     - Fix errors in characters like &
+#     - Fill the spaces with neccessary details and give FULL CODE
+#     - Fill or remove the [] neccessary details and give FULL CODE
+#     - recheck for errors and fix then give full code
+#   """
+
+#   result = client.predict(
+# 		message=prompt,
+# 		system_message="You are a expert in latex, and cv making.",
+# 		max_tokens=2048,
+# 		temperature=0.7,
+# 		top_p=0.95,
+# 		api_name="/chat"
+#     )
+
+#   return result
+
 load_dotenv()
 API_KEY = os.getenv("API_KEY")
 
@@ -37,31 +69,14 @@ def advanced_chat(friend_cv, pdf_path ):
   initial_html = initial_html.text
   print("details initialized")
   
-  fixing_prompt = "fix Misplaced alignment character error, Runaway argument error, Emergency stop error in your code and the corrected full code"
+  fixing_prompt = """
+  - fix Misplaced alignment character error, Runaway argument error, Emergency stop error in your code and the corrected full code
+  """
   refined_html = chat_session.send_message(fixing_prompt)
   refined_html = refined_html.text
   print("fixes done")
-  
-  character_fixing_prompt = "fix errors in characters like &"
-  refined_cv = chat_session.send_message(character_fixing_prompt)
-  refined_cv = refined_cv.text
-  print("fixes recheck completed")
 
-  character_fixing_prompt = "Fill the spaces with neccessary details and give FULL CODE"
-  refined_cv = chat_session.send_message(character_fixing_prompt)
-  refined_cv = refined_cv.text
-  print("spaces filled")
-
-  character_fixing_prompt = "Fill or remove the [] neccessary details and give FULL CODE"
-  refined_cv = chat_session.send_message(character_fixing_prompt)
-  refined_cv = refined_cv.text
-  print("unnecessary spaces filled")
-
-  character_fixing_prompt = "recheck for errors and fix then give full code"
-  final_cv = chat_session.send_message(character_fixing_prompt)
-  final_cv = final_cv.text
-
-  return final_cv
+  return refined_html
 
 
 
