@@ -1,0 +1,135 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{inter}
+\renewcommand*\familydefault{\sfdefault}
+
+\usepackage{geometry}
+\geometry{a4paper, top=1.8cm, bottom=1in, left=2.5cm, right=2.5cm}
+
+\setcounter{secnumdepth}{0} % remove section numbering
+\pdfgentounicode=1 % make ATS friendly
+
+\usepackage{enumitem}
+\setlist[itemize]{noitemsep, left=2em}
+\setlist[description]{itemsep=0pt}
+\setlist[enumerate]{align=left}
+\usepackage[dvipsnames]{xcolor}
+\colorlet{icnclr}{gray}
+\usepackage{titlesec}
+\titlespacing{\subsection}{0pt}{*0}{*0}
+\titlespacing{\subsubsection}{0pt}{*0}{*0}
+\titleformat{\section}{\color{Sepia}\large\fontseries{black}\selectfont\uppercase}{}{}{\ruleafter}[\global\RemVStrue]
+\titleformat{\subsection}{\fontseries{bold}\selectfont}{}{}{\rvs}
+\titleformat{\subsubsection}{\color{gray}\fontseries{bold}\selectfont}{}{}{}
+
+\usepackage{xhfill}
+\newcommand\ruleafter[1]{#1~\xrfill[.5ex]{1pt}[gray]} % add rule after title in .5 x-height
+
+\newif\ifRemVS % remove vspace between \section & \subsection
+\newcommand{\rvs}{
+    \ifRemVS
+        \vspace{-1.5ex}
+    \fi
+    \global\RemVSfalse
+}
+
+\usepackage{fontawesome5}
+\usepackage[bookmarks=false]{hyperref} % [imp!]
+\hypersetup{
+    colorlinks=true,
+    urlcolor=Sepia,
+    pdftitle={Ahamed Dhahlan's Resume}
+}
+
+\usepackage[page]{totalcount}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhf{}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\begin{document}
+
+\begin{center}
+    {\fontsize{28}{28}\selectfont Ahamed Dhahlan} \\ \bigskip
+
+    {\color{icnclr}\faMapMarker} Galle, Sri Lanka \quad
+    {\color{icnclr}\faEnvelope[regular]} \href{mailto:peahameddhahlan3890@gmail.com}{peahameddhahlan3890@gmail.com} \quad
+    {\color{icnclr}\faIcon{mobile-alt}} \href{tel:+94779580967}{+94 77 958 09 67} \quad
+    {\color{icnclr}\faLinkedinIn} \href{https://www.linkedin.com/in/[LinkedIn Profile URL]}{LinkedIn} \quad
+    {\color{icnclr}\faGithub} \href{https://github.com/[GitHub Profile URL]}{GitHub}
+\end{center}
+
+\section{Summary}
+Experienced data scientist and machine learning engineer with a strong focus on transformers and LangChain agentic models. Skilled in developing and deploying advanced natural language processing (NLP) solutions, leveraging frameworks like PyTorch, Hugging Face Transformers, and LangChain to create intelligent, context-aware systems. Proficient in Python, R, and SQL, with hands-on experience in building end-to-end machine learning pipelines, predictive modeling, and data-driven decision-making. Adept at delivering scalable solutions that drive innovation and enhance user engagement.
+
+\section{Experience}
+\subsection{Software Engineer Intern \hfill \normalfont Sep 2024 -- Present}
+\subsubsection{Paralegal.lk, [City, Country -- Add if known]}
+\begin{itemize}
+    \item Integrated payment solutions into the website using PayHere services and React, enhancing transaction capabilities.
+    \item Conducted network analysis of legal case citations, significantly improving the website’s search engine efficiency by 200\%.
+    \item Collaborated on diverse web development tasks, emphasizing front-end functionality and optimizing user experience.
+\end{itemize}
+\subsection{Electrical and Information Engineer Intern \hfill \normalfont August 2023 -- January 2024}
+\subsubsection{Mahaweli Authority of Sri Lanka, Victoria, Sri Lanka}
+\begin{itemize}
+    \item Led the design and implementation of a cutting-edge real-time dam simulation system, meticulously crafted to cater to the requirements of the Victoria Dam Control Room and Observation Platform.
+    \item Implemented a Dam Gate opening prediction app.
+\end{itemize}
+
+\section{Projects}
+\subsection{Singlish GPT: Language Model for Sinhala in English Letters}
+\begin{itemize}
+    \item Developed a GPT model for Singlish text processing and generation using mT5 and achieved 92\% accuracy in text generation tasks.
+    \item \textbf{Technology Used:} Python, Hugging Face, transformers, PyTorch, Aksharamukha, Google
+\end{itemize}
+% ... (Repeat this structure for other projects) ...
+
+
+\section{Research Papers}
+\subsection{Coexistence Mechanism Between eMBB and URLLC in 5G Wireless Networks}
+\begin{itemize}
+    \item Conducted a research study on the coexistence of eMBB and URLLC traffic in 5G wireless networks, focusing on efficient resource allocation strategies.
+    \item Developed synthetic datasets for eMBB traffic (Python, up to 4 concurrent users over 1ms) and URLLC traffic (Matlab, Poisson process with 7 mini-slots per 1ms).
+    \item Proposed and implemented a puncturing scheme to minimize the impact of URLLC traffic on eMBB users by prioritizing users with the lowest MCS and iBLER values.
+    \item Designed and trained two neural networks to automate the selection process, testing four architectures (Baseline, Dropout NN, BatchNorm NN, Deep NN), with Deep NN achieving the best performance.
+    \item \textbf{Technology Used:} Python, Matlab, Neural Networks, Machine Learning, 5G Wireless Networks, Data Analysis
+\end{itemize}
+
+\section{Education}
+\subsection{Bachelor of Science in Engineering (Honors) - Electrical and Information \hfill \normalfont 2021 -- 2025}
+\subsubsection{University of Ruhuna, Galle, Sri Lanka}
+\subsection{GCE Advanced Level and GCE Ordinary Level \hfill \normalfont 2017 -- 2019}
+\subsubsection{Zahira College, Kalmunai, Sri Lanka}
+
+\section{Skills}
+\subsection{Programming Languages} \begin{itemize} \item C, C++, Python, JavaScript \end{itemize}
+\subsection{Data Science/ML Libraries} \begin{itemize} \item TensorFlow, PyTorch, scikit-learn, NumPy, Pandas \end{itemize}
+\subsection{Machine Learning Skills} \begin{itemize} \item NLP, Computer Vision, Model Training, Hyperparameter Tuning \end{itemize}
+% ... (Add other skill sections similarly) ...
+
+\section{Certificates}
+\begin{itemize}
+    \item Certificate in Introduction to Web Development with HTML, CSS, JavaScript
+    \item Certificate in Introduction to Cloud Computing
+    \item Certificate in Introduction to Deep Learning \& Neural Networks with Keras
+    \item Certificate in Machine Learning with Python
+    \item Certificate in Python for Data Analysis: Pandas \& NumPy
+    \item edX Verified Certificate for Data Science: Machine Learning
+    \item Certificate in SystemVerilog for ASIC/FPGA Design \& Simulation
+\end{itemize}
+
+\section{Achievements}
+\begin{itemize}
+    \item Participant, Commercial Bank Hackathon, Commercial Bank June 2024
+    \item 2nd Runners up, Haxtreme 2.0, IEEE Society November 2023
+    \item Top 10\%, AWS Deep Racer, AWS August 2023
+\end{itemize}
+
+\section{References}
+\textcolor{Sepia}{References available upon request.}
+
+\end{document}

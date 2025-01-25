@@ -85,7 +85,7 @@ def latex_to_pdf(latex_code, output_path):
     generated_cvs_dir = os.path.join(os.path.dirname(__file__), "generated_cvs")
     os.makedirs(generated_cvs_dir, exist_ok=True)
 
-    frontend_public_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..",  "frontend", "public"))
+    frontend_public_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "public"))
     
     
     temp_tex_path = os.path.join(generated_cvs_dir, "temp.tex")
